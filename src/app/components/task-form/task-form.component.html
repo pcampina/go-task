@@ -1,1 +1,49 @@
-<p>task-form works!</p>
+<form class="rounded-xl overflow-hidden bg-white">
+  <div class="flex gap-1 items-center">
+    <img src="images/icon-new-task.svg" class="font-semibold text-lg" alt="" />
+    <h1>Create task</h1>
+    <img src="images/icon-close.svg" class="ml-auto cursor-pointer" alt="" />
+  </div>
+
+  <div class="p-4 border-y border=[#D1D5DB] flex flex-col gap-4">
+    <div>
+      <p class="font-semibold text-sm mb-2">Task name</p>
+      <input
+        type="text"
+        placeholder="Task name"
+        class="w-full border border-[#D1D5DB] p-3 rounded-lg text-sm font-light text-[#89919F]"
+      />
+      <p class="font-semibold text-sm text-red-500">
+        Task name is required (minimum 10 characters)
+      </p>
+    </div>
+
+    <div>
+      <p class="font-semibold text-sm mb-2">Task description</p>
+      <input
+        type="text"
+        placeholder="Add the task description"
+        class="w-full border border-[#D1D5DB] p-3 rounded-lg text-sm font-light text-[#89919F]"
+      />
+      <p class="font-semibold text-sm text-red-500">
+        Task description is required (minimum 10 characters)
+      </p>
+    </div>
+
+    <div class="p-4 flex justify-end gap-2">
+      <button
+        type="button"
+        class="py-3 px-4 bg-[#FAFAFA] rounded-xl text-sm font-semibold cursor-pointer active:translate-y-1 transition-transform duration-75"
+      >
+        Cancel
+      </button>
+
+      <button
+        type="submit"
+        class="py-3 px-4 bg-[#2A89EF] rounded-xl text-sm text-white font-semibold cursor-pointer active:translate-y-1 transition-transform duration-75 shadow-md shadow-blue-500/50"
+      >
+        Create task
+      </button>
+    </div>
+  </div>
+</form>
