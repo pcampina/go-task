@@ -8,7 +8,12 @@
     <h1 class="font-semibold text-lg">
       {{ (_data.mode === "create" ? "Create" : "Edit") + " Task" }}
     </h1>
-    <img src="images/icon-close.svg" class="ml-auto cursor-pointer" alt="" />
+    <img
+      src="images/icon-close.svg"
+      class="ml-auto cursor-pointer"
+      alt=""
+      (click)="closeModal()"
+    />
   </div>
 
   <div class="p-4 border-y border=[#D1D5DB] flex flex-col gap-4">
@@ -20,9 +25,11 @@
         class="w-full border border-[#D1D5DB] p-3 rounded-lg text-sm font-light text-[#89919F]"
         formControlName="name"
       />
-      <p class="font-semibold text-sm text-red-500">
-        Task name is required (minimum 10 characters)
-      </p>
+      @if (taskForm.get("name")?.touched && taskForm.get("name")?.invalid) {
+        <p class="font-semibold text-sm text-red-500">
+          Task name is required (minimum 10 characters)
+        </p>
+      }
     </div>
 
     <div>
@@ -33,15 +40,21 @@
         class="w-full border border-[#D1D5DB] p-3 rounded-lg text-sm font-light text-[#89919F]"
         formControlName="description"
       />
-      <p class="font-semibold text-sm text-red-500">
-        Task description is required (minimum 10 characters)
-      </p>
+      @if (
+        taskForm.get("description")?.touched &&
+        taskForm.get("description")?.invalid
+      ) {
+        <p class="font-semibold text-sm text-red-500">
+          Task description is required (minimum 10 characters)
+        </p>
+      }
     </div>
 
     <div class="p-4 flex justify-end gap-2">
       <button
         type="button"
         class="py-3 px-4 bg-[#FAFAFA] rounded-xl text-sm font-semibold cursor-pointer active:translate-y-1 transition-transform duration-75"
+        (click)="closeModal()"
       >
         Cancel
       </button>
