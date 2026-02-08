@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { ModalControllerService } from '../../services/modal-controller.service';
+import { TaskService } from '../../services/task.service';
 
 @Component({
   selector: 'app-hero',
@@ -9,8 +10,17 @@ import { ModalControllerService } from '../../services/modal-controller.service'
 })
 export class HeroComponent {
   private readonly _modalControllerService = inject(ModalControllerService);
+  private readonly _taskService = inject(TaskService)
 
   openNewTaskModal() {
-    this._modalControllerService.openNewTaskModal()
+    const dialogRef = this._modalControllerService.openNewTaskModal();
+
+    dialogRef.closed.subscribe((taskForm) => {
+      console.log('Task created', taskForm);
+
+      if (taskForm) {
+        this._taskService.addTask(taskForm);
+      }
+    })
   }
 }
