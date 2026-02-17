@@ -1,3 +1,7 @@
+@let todoTasks = (this._taskService.todoTasks | async) ?? [];
+@let doingTasks = (this._taskService.doingTasks | async) ?? [];
+@let doneTasks = (this._taskService.doneTasks | async) ?? [];
+
 <div class="p-3 flex overflow-x-auto scrollbar-hidden">
   <!-- TO DO -->
   <div

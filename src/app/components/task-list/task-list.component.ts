@@ -1,35 +1,18 @@
 import { Component, inject } from '@angular/core';
 import { TaskCardComponent } from "../task-card/task-card.component";
 import { TaskService } from '../../services/task.service';
-import { CdkDragDrop, moveItemInArray, transferArrayItem, CdkDrag, CdkDropList } from '@angular/cdk/drag-drop';
+import { CdkDragDrop, transferArrayItem, CdkDrag, CdkDropList } from '@angular/cdk/drag-drop';
 import { ITask } from '../../interfaces/task.interface'
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-task-list',
-  imports: [TaskCardComponent, CdkDropList, CdkDrag],
+  imports: [TaskCardComponent, CdkDropList, CdkDrag, AsyncPipe],
   templateUrl: './task-list.component.html',
   styleUrl: './task-list.component.css'
 })
 export class TaskListComponent {
-  todoTasks: ITask[] = []
-  doingTasks: ITask[] = []
-  doneTasks: ITask[] = []
-
-  private readonly _taskService = inject(TaskService);
-
-  ngOnInit() {
-    this._taskService.todoTasks.subscribe((todoList) => {
-      this.todoTasks = todoList;
-    });
-
-    this._taskService.doingTasks.subscribe((doingList) => {
-      this.doingTasks = doingList;
-    });
-
-    this._taskService.doneTasks.subscribe((doneList) => {
-      this.doneTasks = doneList;
-    });
-  }
+  readonly _taskService = inject(TaskService);
 
   drop(event: CdkDragDrop<ITask[]>) {
     if (event.previousContainer === event.container) {
