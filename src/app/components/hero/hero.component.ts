@@ -16,8 +16,6 @@ export class HeroComponent {
     const dialogRef = this._modalControllerService.openNewTaskModal();
 
     dialogRef.closed.subscribe((taskForm) => {
-      console.log('Task created', taskForm);
-
       if (taskForm) {
         this._taskService.addTask(taskForm);
       }
