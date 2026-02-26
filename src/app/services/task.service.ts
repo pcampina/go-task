@@ -12,7 +12,7 @@ import { IComment } from "../interfaces/comment.interface";
 })
 export class TaskService {
   // to do
-  private todoTasks$ = new BehaviorSubject<ITask[]>([]);
+  private todoTasks$ = new BehaviorSubject<ITask[]>(this.getTasksFromLocalStorage(TaskStatusEnum.TODO));
   readonly todoTasks = this.todoTasks$
     .asObservable()
     .pipe(
@@ -21,7 +21,7 @@ export class TaskService {
     );
 
   // doing
-  private doingTasks$ = new BehaviorSubject<ITask[]>([]);
+  private doingTasks$ = new BehaviorSubject<ITask[]>(this.getTasksFromLocalStorage(TaskStatusEnum.DOING));
   readonly doingTasks = this.doingTasks$
     .asObservable()
     .pipe(
@@ -30,7 +30,7 @@ export class TaskService {
     );
 
   // done
-  private doneTasks$ = new BehaviorSubject<ITask[]>([]);
+  private doneTasks$ = new BehaviorSubject<ITask[]>(this.getTasksFromLocalStorage(TaskStatusEnum.DONE));
   readonly doneTasks = this.doneTasks$
     .asObservable()
     .pipe(
@@ -116,8 +116,19 @@ export class TaskService {
   private saveTasksOnLocalStorage(key: string, tasks: ITask[]) {
     try {
       localStorage.setItem(key, JSON.stringify(tasks));
-    } catch(error) {
+    } catch (error) {
       console.error('It was not possible to save the task on localStorage, try again...', error);
+    }
+  }
+
+  private getTasksFromLocalStorage(key: string) {
+    try {
+      const storedTasks = localStorage.getItem(key);
+
+      return storedTasks ? JSON.parse(storedTasks) : [];
+    } catch(error) {
+      console.error('Something went wrong to retrieve the tasks from localStorage.', error);
+      return [];
     }
   }
 
