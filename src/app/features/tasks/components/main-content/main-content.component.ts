@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { HeroComponent } from "../hero/hero.component";
+import { HeroComponent } from "../../../../core/layout/hero/hero.component";
 import { TaskListComponent } from "../task-list/task-list.component";
 
 @Component({

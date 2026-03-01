@@ -4,10 +4,6 @@
 
 @let isTaskListEmpty = todoTasks.length === 0 && doingTasks.length === 0 && doneTasks.length === 0;
 
-<p>TODO: {{ this._taskService.todoTasks | async | json}}</p>
-<p>DOING: {{ this._taskService.doingTasks | async | json}}</p>
-<p>DONE: {{ this._taskService.doneTasks | async | json}}</p>
-
 <div class="p-3 flex overflow-x-auto scrollbar-hidden">
   <!-- TO DO -->
   <div
